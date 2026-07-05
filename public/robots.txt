@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abdulkadir-yilmaz.netlify.app/sitemap.xml

@@ -2,7 +2,7 @@ import type { Project } from "@/lib/projects";
 
 const project: Project = {
   slug: "mail-categorization",
-  name: "Mail Categorization (E-posta Kategorilendirme)",
+  name: "Mail Categorization",
   tagline: "Gelen e-postaları makine öğrenmesiyle otomatik kategorize eden mikroservis",
   status: "personal",
   period: "2025",
