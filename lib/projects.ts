@@ -185,74 +185,43 @@ export const projects: Project[] = [
 },
 
 {
-  slug: "mail-categorization",
-
-  name: "Mail Categorization System",
-
-  tagline:
-    "Gmail hesaplarını OAuth ile bağlayarak e-postaları Transformer tabanlı bir model ile otomatik kategorilendiren tam kapsamlı web uygulaması.",
-
-  status: "personal",
-
-  period: "Personal Project · 2026",
-
-  stack: [
-    "Python",
-    "FastAPI",
-    "PyTorch",
-    "Transformers",
-    "DistilBERT",
-    "Google Gmail API",
-    "Google OAuth 2.0",
-    "SQLAlchemy",
-    "PostgreSQL",
-    "Jinja2",
-  ],
-
-  role:
-    "Projeyi uçtan uca tek başıma geliştirdim. Makine öğrenmesi modelini backend'e entegre ettim, Gmail OAuth akışını oluşturdum ve kullanıcıların maillerini analiz edebileceği dashboard'u geliştirdim.",
-
-  problem:
-    "Kullanıcıların Gmail hesaplarındaki e-postaları manuel olarak sınıflandırması zaman alıyordu. Amaç, mailleri otomatik olarak kategorilendirip sonuçları merkezi bir panel üzerinden görüntüleyebilmekti.",
-
-  approach: [
-    "DistilBERT tabanlı metin sınıflandırma modelini FastAPI uygulaması açılırken belleğe yükleyerek her istekte yeniden model yüklenmesini engelledim.",
-    "Google OAuth 2.0 ile kullanıcıların Gmail hesaplarını güvenli şekilde bağlayabildiği kimlik doğrulama akışını geliştirdim.",
-    "Gmail API üzerinden mailleri çekip Transformer modeli ile kategori tahmini yaptım.",
-    "Tahmin sonuçlarını SQLAlchemy kullanarak PostgreSQL veritabanına kaydettim.",
-    "Kategori filtreleme, güven skoru görüntüleme ve kategori dağılımı istatistiklerini içeren bir dashboard geliştirdim."
-  ],
-
-  highlights: [
-    "Transformer (DistilBERT) tabanlı otomatik e-posta sınıflandırması.",
-    "Google OAuth 2.0 ve Gmail API entegrasyonu.",
-    "FastAPI yaşam döngüsünde (lifespan) modeli tek sefer yükleyerek çıkarım performansını iyileştirme.",
-    "Kategori dağılımı ve güven skorlarını gösteren dashboard.",
-    "Yanlış sınıflandırılan mailler için manuel kategori güncelleme endpoint'i."
-  ],
-
-  challenges: [
-    {
-      title: "Makine öğrenmesi modelinin üretim ortamında kullanılması",
-      detail:
-        "Modeli her API isteğinde yüklemek ciddi gecikmeye neden oluyordu. FastAPI'nin lifespan mekanizmasını kullanarak modeli uygulama başlarken tek sefer yükleyip tüm isteklerde aynı örneği kullandım."
-    },
-    {
-      title: "Google OAuth akışını yönetmek",
-      detail:
-        "Kullanıcının Gmail hesabına güvenli erişim sağlamak için OAuth callback sürecini tasarladım; access token ve refresh token yönetimini veritabanında saklayarak tekrar yetkilendirme ihtiyacını azalttım."
-    },
-    {
-      title: "ML modeli ile backend entegrasyonu",
-      detail:
-        "Transformer modelinden dönen kategori ve güven skorlarını REST API, veritabanı ve kullanıcı arayüzü arasında tutarlı şekilde aktaracak bir veri akışı oluşturdum."
-    }
-  ],
-
-  result:
-    "Kullanıcıların Gmail hesaplarına bağlanarak e-postaları otomatik kategorilendiren, sonuçları veritabanında saklayan ve istatistiksel olarak görüntüleyen çalışan bir prototip geliştirildi. Proje boyunca Transformer modellerinin üretim ortamına entegrasyonu, OAuth tabanlı kimlik doğrulama ve FastAPI mimarisi konularında deneyim kazandım.",
-
-  links: [{label: "Github", href: "https://github.com/kadir28566/MailCategorization"}],
+"slug": "mail-categorization",
+"name": "Mail Categorization (E-posta Kategorilendirme)",
+"tagline": "Gelen e-postaları makine öğrenmesiyle otomatik kategorize eden mikroservis",
+"status": "personal",
+"period": "2025",
+"stack": [
+"Python",
+"FastAPI",
+"SQLAlchemy (SQLite/Postgres)",
+"scikit-learn / custom classifier",
+"Google Gmail API",
+"Jinja2 (templates)",
+"HTML/CSS/JS"
+],
+"role": "Full-stack geliştirici — backend, ML entegrasyonu ve temel frontend dashboard",
+"problem": "Kullanıcıların gelen e-postalarını konu/etiket bazında otomatik sınıflandıracak bir çözüm ihtiyacı vardı; manuel sınıflandırma zaman alıyor ve tutarsız oluyordu.",
+"approach": [
+"E-posta verisi çekmek için Google Gmail API ile gmail_service katmanı implement edildi.",
+"E-postaları önişleme ve özellik çıkarımı yapacak bir sınıflandırıcı (ml/classifier.py) geliştirildi.",
+"FastAPI tabanlı REST API ile klasifikasyon ve istatistik endpointleri sağlandı (routers/prediction.py, routers/stats.py).",
+"Sonuçlar veritabanında modeller aracılığıyla saklandı ve yönetici dashboard'unda gösterildi.",
+"Basit bir frontend dashboard (Jinja2 + JS) ile sınıflandırma sonuçları ve metrikler sunuldu."
+],
+"highlights": [
+"Gmail API entegrasyonu ile gerçek e-posta akışı üzerinde çalışabilen uçtan uca prototip.",
+"Makine öğrenmesi tabanlı otomatik etiketleme ile manuel iş yükünde azalma potansiyeli.",
+"RESTful servisler sayesinde başka uygulamalara kolay entegrasyon.",
+"Basit dashboard ile anlık doğruluk/istatistik takibi."
+],
+"challenges": [
+{
+"title": "Sınırlı etiketli veri",
+"detail": "Gerçek kullanıcı e-postalarından yeterli etiketli eğitim verisi toplamak zordu, bu yüzden veri artırma ve basit text-özelliği (bag-of-words/tf-idf) yaklaşımları tercih edildi."
+}
+],
+"result": "Çalışır bir prototip elde edildi: Gmail'den e-posta çekip model ile kategori tahmini yapan, tahminleri veritabanına kaydeden ve dashboard üzerinden raporlayan bir uygulama. Prototip üretime geçmeden önce veri miktarı ve model değerlendirmesi artırılmalı.",
+"links": []
 }
   
 ];
