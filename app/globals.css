@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0f172a;
+  background-image: radial-gradient(circle at top, rgba(217,179,90,0.09), transparent 26%), radial-gradient(circle at bottom right, rgba(226,232,240,0.06), transparent 20%);
+  color: #e2e8f0;
+}
+
+::selection {
+  background-color: #d9b35a;
+  color: #0f172a;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #c9a15a;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+pre code.hljs {
+  background: transparent !important;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal {
+  color: #9ab4d6;
+}
+.hljs-string,
+.hljs-attr {
+  color: #c9a15a;
+}
+.hljs-comment {
+  color: #5c5d68;
+  font-style: italic;
+}
+.hljs-number,
+.hljs-title,
+.hljs-title.function_ {
+  color: #c9a15a;
+}
+.hljs-title.class_ {
+  color: #d69a9a;
+}
