@@ -2,7 +2,7 @@ export type Project = {
   slug: string;
   name: string;
   tagline: string;
-  status: "production" | "internship" | "in-progress" | "student project" | "graduation";
+  status: "production" | "internship" | "in-progress" | "student project" | "graduation" | "personal";
   period: string;
   stack: string[];
   role: string;
@@ -182,6 +182,77 @@ export const projects: Project[] = [
     "QueryMate, doğal dil sorgularını SQL ifadelerine dönüştürüp ilişkisel veritabanlarında çalıştırabilen çalışan bir prototip olarak geliştirildi. Proje boyunca LLM entegrasyonu, REST API geliştirme ve SQLAlchemy ile veritabanı etkileşimi konularında deneyim kazandım.",
 
   links: [{label: "Github", href: "https://github.com/kadir28566/text2sql"}],
+},
+
+{
+  slug: "mail-categorization",
+
+  name: "Mail Categorization System",
+
+  tagline:
+    "Gmail hesaplarını OAuth ile bağlayarak e-postaları Transformer tabanlı bir model ile otomatik kategorilendiren tam kapsamlı web uygulaması.",
+
+  status: "personal",
+
+  period: "Personal Project · 2026",
+
+  stack: [
+    "Python",
+    "FastAPI",
+    "PyTorch",
+    "Transformers",
+    "DistilBERT",
+    "Google Gmail API",
+    "Google OAuth 2.0",
+    "SQLAlchemy",
+    "PostgreSQL",
+    "Jinja2",
+  ],
+
+  role:
+    "Projeyi uçtan uca tek başıma geliştirdim. Makine öğrenmesi modelini backend'e entegre ettim, Gmail OAuth akışını oluşturdum ve kullanıcıların maillerini analiz edebileceği dashboard'u geliştirdim.",
+
+  problem:
+    "Kullanıcıların Gmail hesaplarındaki e-postaları manuel olarak sınıflandırması zaman alıyordu. Amaç, mailleri otomatik olarak kategorilendirip sonuçları merkezi bir panel üzerinden görüntüleyebilmekti.",
+
+  approach: [
+    "DistilBERT tabanlı metin sınıflandırma modelini FastAPI uygulaması açılırken belleğe yükleyerek her istekte yeniden model yüklenmesini engelledim.",
+    "Google OAuth 2.0 ile kullanıcıların Gmail hesaplarını güvenli şekilde bağlayabildiği kimlik doğrulama akışını geliştirdim.",
+    "Gmail API üzerinden mailleri çekip Transformer modeli ile kategori tahmini yaptım.",
+    "Tahmin sonuçlarını SQLAlchemy kullanarak PostgreSQL veritabanına kaydettim.",
+    "Kategori filtreleme, güven skoru görüntüleme ve kategori dağılımı istatistiklerini içeren bir dashboard geliştirdim."
+  ],
+
+  highlights: [
+    "Transformer (DistilBERT) tabanlı otomatik e-posta sınıflandırması.",
+    "Google OAuth 2.0 ve Gmail API entegrasyonu.",
+    "FastAPI yaşam döngüsünde (lifespan) modeli tek sefer yükleyerek çıkarım performansını iyileştirme.",
+    "Kategori dağılımı ve güven skorlarını gösteren dashboard.",
+    "Yanlış sınıflandırılan mailler için manuel kategori güncelleme endpoint'i."
+  ],
+
+  challenges: [
+    {
+      title: "Makine öğrenmesi modelinin üretim ortamında kullanılması",
+      detail:
+        "Modeli her API isteğinde yüklemek ciddi gecikmeye neden oluyordu. FastAPI'nin lifespan mekanizmasını kullanarak modeli uygulama başlarken tek sefer yükleyip tüm isteklerde aynı örneği kullandım."
+    },
+    {
+      title: "Google OAuth akışını yönetmek",
+      detail:
+        "Kullanıcının Gmail hesabına güvenli erişim sağlamak için OAuth callback sürecini tasarladım; access token ve refresh token yönetimini veritabanında saklayarak tekrar yetkilendirme ihtiyacını azalttım."
+    },
+    {
+      title: "ML modeli ile backend entegrasyonu",
+      detail:
+        "Transformer modelinden dönen kategori ve güven skorlarını REST API, veritabanı ve kullanıcı arayüzü arasında tutarlı şekilde aktaracak bir veri akışı oluşturdum."
+    }
+  ],
+
+  result:
+    "Kullanıcıların Gmail hesaplarına bağlanarak e-postaları otomatik kategorilendiren, sonuçları veritabanında saklayan ve istatistiksel olarak görüntüleyen çalışan bir prototip geliştirildi. Proje boyunca Transformer modellerinin üretim ortamına entegrasyonu, OAuth tabanlı kimlik doğrulama ve FastAPI mimarisi konularında deneyim kazandım.",
+
+  links: [{label: "Github", href: "https://github.com/kadir28566/MailCategorization"}],
 }
   
 ];
