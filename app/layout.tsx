@@ -37,6 +37,9 @@ export const metadata: Metadata = {
     "yazılım mühendisi",
     "sistem programlama",
   ],
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
